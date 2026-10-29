@@ -15,6 +15,56 @@ struct Data {
 
 const int MAX = 100;
 
+double avgRAM(Data dt[], int n) {
+    if (n == 0) return 0;
+
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total += dt[i].ram;
+    }
+
+    return (double) total/n;
+}
+
+double avgStorage(Data dt[], int n) {
+    if (n == 0) return 0;
+
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total += dt[i].storage;
+    }
+
+    return (double) total/n;
+}
+
+int totalStorage(Data dt[], int n) {
+    if (n == 0) return 0;
+
+    return dt[n-1].storage + totalStorage(dt, n-1);
+}
+
+int cariMinRam(Data dt[], int n) {
+    if (n == 0) return 0;
+
+    int minRAM = dt[0].ram;
+    for (int i = 1; i < n; i++) {
+        if (dt[i].ram < minRAM) minRAM = dt[i].ram;
+    }
+
+    return minRAM;
+}
+
+int cariMaxRam(Data dt[], int n) {
+    if (n == 0) return 0;
+
+    int maxRAM = dt[0].ram;
+    for (int i = 1; i < n; i++) {
+        if (dt[i].ram > maxRAM) maxRAM = dt[i].ram;
+    }
+
+    return maxRAM;
+}
+
 void tambahData(Data dt[], int &n){
 	if(n >= MAX){
 		cout << "Data penuh. Kembali ke menu" << endl;
